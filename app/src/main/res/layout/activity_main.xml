@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    tools:context=".MainActivity"
+    tools:ignore="NestedWeights">
+
+    <LinearLayout
+        android:id="@+id/wrap_top"
+        android:layout_weight="0.1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <FrameLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/colorDark">
+
+            <TextView
+                android:id="@+id/top_text_00"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="MITS :: FX3 Device"
+                android:textColor="#fff"
+                android:textAlignment="center"/>
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/colorCloseDark">
+
+            <TextView
+                android:id="@+id/top_text_01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Terminal APP"
+                android:textColor="#fff"
+                android:textAlignment="center"/>
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/wrap_log_box"
+        android:layout_weight="0.8"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorDark"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/sample_image_view"
+            android:gravity="top"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/log_box_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log : "
+            android:textSize="9dp"
+            android:textColor="@color/colorAccent"/>
+        <TextView
+            android:id="@+id/log_box_text"
+            android:scrollbars = "vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:layout_weight="5"
+            android:text="Please Click Load"
+            android:textSize="9dp"
+            android:textColor="@color/colorWhite"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wrap_menu_box"
+        android:layout_weight="0.1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorCloseDark">
+
+        <Button
+            android:id="@+id/menu_box_clear_button"
+            android:layout_weight="0.4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Clear Log Box"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/custom_button"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/menu_box_load_button"
+            android:layout_weight="0.2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Load"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/custom_button"
+            android:layout_margin="5dp"/>
+        <Button
+            android:id="@+id/menu_box_reset"
+            android:layout_weight="0.2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="RESET"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/custom_button"
+            android:layout_margin="5dp"/>
+        <Button
+            android:id="@+id/menu_box_counterStart"
+            android:layout_weight="0.2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="START"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/custom_button"
+            android:layout_margin="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wrap_send_box"
+        android:layout_weight="0.1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorRealDark">
+
+        <EditText
+            android:id="@+id/send_box_edit"
+            android:theme="@style/EditTheme"
+            android:layout_weight="0.8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:digits="0123456789ABCDEF"
+            android:inputType="textCapCharacters"
+            android:textColor="@color/colorAccent"/>
+        <Button
+            android:id="@+id/send_box_button"
+            android:layout_weight="0.2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="SEND"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/custom_button"
+            android:layout_margin="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wrap_bottom"
+        android:layout_weight="0.05"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorDark">
+
+    </LinearLayout>
+
+</LinearLayout>
