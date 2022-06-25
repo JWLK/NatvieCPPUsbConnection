@@ -5,6 +5,8 @@ import static com.jwlryk.natviecppusbconnection.util.ConvertData.hexStringToShor
 
 import com.jwlryk.natviecppusbconnection.util.Dlog;
 
+import java.util.ArrayList;
+
 public class DeviceRegisterSetting {
 
     public static void writeCommandHexData(DeviceCommunicator device, String hexString)
@@ -47,6 +49,32 @@ public class DeviceRegisterSetting {
         }
         try {
             device.DataTransferBulkWrite(sendStringArray);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Dlog.e(e.toString());
+        }
+
+    }
+
+    static ArrayList<String> dataSaveArrayList = new ArrayList<>();
+
+    /**
+     * Send Register Array
+     */
+    public static void sendRegisterButton(DeviceCommunicator device, ArrayList<String> arrayList) {
+        String[] sendStringArray =  arrayList.toArray(new String[arrayList.size()]);
+        /*
+        int[] sendIntArray = hexStringArrayToInt32bit8HexArray(sendStringArray);
+        for(int ints : sendIntArray){
+            Dlog.d(String.format("0x%04X", ints));
+        }
+         */
+
+        try {
+            device.DataTransferBulkWrite(sendStringArray);
+            Dlog.d("Send Register Data ");
+            dataSaveArrayList = new ArrayList<>();
+            Dlog.d("dataSaveArrayList Clear ");
         } catch (Exception e) {
             e.printStackTrace();
             Dlog.e(e.toString());

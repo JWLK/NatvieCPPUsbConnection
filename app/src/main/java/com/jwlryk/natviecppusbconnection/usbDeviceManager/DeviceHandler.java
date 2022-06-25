@@ -4,8 +4,16 @@ import android.hardware.usb.UsbDevice;
 import android.icu.text.SimpleDateFormat;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.Toast;
 
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.jwlryk.natviecppusbconnection.MainActivity;
@@ -113,6 +121,63 @@ public class DeviceHandler extends Handler {
             Toast warningMessage = Toast.makeText(mainActivity.getApplicationContext(),"Please Connect USB Device: "+mDeviceCommunicator, Toast.LENGTH_SHORT);
             warningMessage.show();
         }
+
+    }
+
+    public void debug_registerSetting() {
+        ArrayList<String> excel_1 = registerLoadSelect("debug.xls",0, 1, 1, 1, 6);
+        DeviceRegisterSetting.sendRegisterButton(mDeviceCommunicator,excel_1);
+    }
+
+
+    public ArrayList<String> registerLoadSelect(String SheetName,int selectNumber, int colStartNumber ,int colCount, int rowStartNumber ,int rowCount) {
+        ArrayList<String> dataSaveArrayList = new ArrayList<>();
+
+        try {
+            InputStream is = mainActivity.getApplicationContext().getAssets().open(SheetName);
+            Workbook wb = Workbook.getWorkbook(is);
+
+            if(wb != null) {
+                Dlog.d("RegisterMap Init : " + SheetName);
+                Sheet sheet = wb.getSheet(selectNumber);   // 시트 불러오기
+                if(sheet != null) {
+                    int colIndexStart = colStartNumber;
+                    int colTotal = colCount;
+                    int rowIndexStart = rowStartNumber;                  // row 인덱스 시작
+                    int rowTotal = rowCount;
+
+                    ArrayList<String> arrayList = new ArrayList<>();
+                    StringBuilder sb;
+
+                    for(int col = colIndexStart; col <= colTotal; col++) {
+
+                        sb = new StringBuilder();
+
+                        for(int row = rowIndexStart; row <= rowTotal; row++) {
+
+                            String contents = sheet.getCell(col, row).getContents();
+                            arrayList.add(contents);
+                            if(row == rowTotal-1) {
+                                sb.append("row"+row+" : "+contents);
+                            } else {
+                                sb.append("row"+row+" : "+contents+" , ");
+                            }
+                            Dlog.i("RegisterContents : " + col+","+row+" = "+contents);
+
+                            //ADD Reigster
+                            dataSaveArrayList.add(contents);
+                        }
+
+                    }
+                    Dlog.i("Total = "+ arrayList.size());
+                }
+            }
+        } catch (IOException | BiffException e) {
+            e.printStackTrace();
+            Log.e("error", e.toString());
+        }
+
+        return dataSaveArrayList;
 
     }
 
